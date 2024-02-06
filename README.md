@@ -12,6 +12,7 @@
     - [LOGIN](#login)
       - [CREDENCIALES UNICAS](#credenciales-unicas)
       - [GRUPO DE CREDENCIALES](#grupo-de-credenciales)
+    - [CONEXION BBDD](#conexion-bbdd)
 
 ### Contenido del Repositorio
 
@@ -27,7 +28,13 @@
 ### LOGIN
 
 #### CREDENCIALES UNICAS
-- **login.php:**Login sencillo con unas credenciales ya establecidas
+- **login.php:** Login sencillo con unas credenciales ya establecidas
   
 #### GRUPO DE CREDENCIALES
 - **BBDD_login.php:** Login con unas credenciales establecidas en una base de datos externa
+
+### CONEXION BBDD
+- Conexión y verificación de la BBDD
+
+- **conexionbbdd.php:** Contiene el código para una conexión y verificación sin archivo externo
+-  **FUNCION_conexionbbdd.php:** Contiene el código para crear la conexión y verificación desde un archivo de funciones externo
