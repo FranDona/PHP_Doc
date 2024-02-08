@@ -24,24 +24,24 @@
 
 ## Estructura del Repositorio (por carpetas)
 
-### LOG ERRORES
+### LOG ERRORES 📂
 - **errores.php:** Archivo para mostrar errores en pantalla, también generara un segundo archivo .log de esta manera será mas fácil detectar errores.
 ---
-### LOGIN
+### LOGIN 📂
 
-#### CREDENCIALES UNICAS
+#### CREDENCIALES UNICAS 📂
 - **login.php:** Login sencillo con unas credenciales ya establecidas
   
-#### GRUPO DE CREDENCIALES
+#### GRUPO DE CREDENCIALES 📂
 - **BBDD_login.php:** Login con unas credenciales establecidas en una base de datos externa
 ----
-### CONEXION BBDD
+### CONEXION BBDD 📂
  Conexión y verificación de la BBDD
 
 - **conexionbbdd.php:** Contiene el código para una conexión y verificación sin archivo externo
 -  **FUNCION_conexionbbdd.php:** Contiene el código para crear la conexión y verificación desde un archivo de funciones externo
 ----
-### CRUD
-#### CREATE
+### CRUD 📂
+#### CREATE 📂
 - **create.php:** Creacion de Create sin archivo externo
 - **FUNCION_create.php:** Creacion de Create con archivo externo
