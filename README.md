@@ -15,9 +15,9 @@
     - [CONEXION BBDD](#conexion-bbdd)
     - [CRUD](#crud)
       - [CREATE](#create)
+      - [DELETE](#delete)
       - [READ](#read)
       - [UPDATE](#update)
-      - [DELETE](#delete)
 
 ### Contenido del Repositorio
 
@@ -56,12 +56,14 @@
 - 📄**create.php:** Creación de Create sin archivo externo
 - 📄**FUNCION_create.php:** Creación de Create con archivo externo
   
+#### DELETE
+- **delete_fisico_logico.php:** Archivo con tabla para usar la función lógica y física
+- **funciones_delete:** Archivo de funciones para usar las funciones delete lógico y físico
+
 #### READ
 - 📄**read.php:** Estructura para visualizar los datos en una tabla, con nombres personalizados
 
 #### UPDATE
 - 
 
-#### DELETE
-- 
 ---
