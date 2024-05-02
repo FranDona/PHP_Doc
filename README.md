@@ -11,6 +11,7 @@
   - [Estructura documentos PHP](#estructura-documentos-php)
     - [Incrustaciones](#incrustaciones)
     - [Archivos Únicos](#archivos-únicos)
+    - [Vincular archivos PHP](#vincular-archivos-php)
     - [Contenido del Repositorio](#contenido-del-repositorio)
   - [Estructura del Repositorio (por carpetas)](#estructura-del-repositorio-por-carpetas)
     - [LOG ERRORES](#log-errores)
@@ -134,7 +135,36 @@ No es necesario usar la etiqueta de cierre **?>**
 ```
 [-> Enlace a Ejemplo <-](ejemplos/0.%20ESTRUCTURA/archivo_unico.php)
 
+### Vincular archivos PHP
 
+sdsdsd
+
+```php
+<?php 
+# Incluye un archivo. Si el archivo no se encuentra o hay un error, PHP solo emite una advertencia y continúa ejecutando el script.
+include ('archivo.php');
+
+# Similar a include pero si el archivo no se encuentra o hay un error, PHP emite un error fatal y detiene la ejecución del script.
+require ('archivo.php');
+
+# Incluye el archivo solo una vez durante la ejecución del script, incluso si se llama varias veces.
+include_once ('archivo.php');
+
+# Similar a include_once pero con el mismo comportamiento de require en caso de error.
+require_once ('archivo.php');
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Vinculacion de Archivos</title>
+</head>
+<body>
+    <p>Hola Mundo!</p>
+</body>
+</html>
+```
 
 
 
