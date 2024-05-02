@@ -137,20 +137,25 @@ No es necesario usar la etiqueta de cierre **?>**
 
 ### Vincular archivos PHP
 
-sdsdsd
+Podemos usar diferentes tipos de vinculacion:
+
+- **include**: Incluye un archivo. Si el archivo no se encuentra o hay un error, PHP solo emite una advertencia y continúa ejecutando el script.
+  
+- **require**: Similar a include pero si el archivo no se encuentra o hay un error, PHP emite un error fatal y detiene la ejecución del script.
+  
+-  **include_once**: Incluye el archivo solo una vez durante la ejecución del script, incluso si se llama varias veces.
+
+-  **require_once**: Similar a include_once pero con el mismo comportamiento de require en caso de error.
 
 ```php
 <?php 
-# Incluye un archivo. Si el archivo no se encuentra o hay un error, PHP solo emite una advertencia y continúa ejecutando el script.
+
 include ('archivo.php');
 
-# Similar a include pero si el archivo no se encuentra o hay un error, PHP emite un error fatal y detiene la ejecución del script.
 require ('archivo.php');
 
-# Incluye el archivo solo una vez durante la ejecución del script, incluso si se llama varias veces.
 include_once ('archivo.php');
 
-# Similar a include_once pero con el mismo comportamiento de require en caso de error.
 require_once ('archivo.php');
 ?>
 
@@ -165,6 +170,7 @@ require_once ('archivo.php');
 </body>
 </html>
 ```
+[-> Enlace a Ejemplo <-](ejemplos/0.%20ESTRUCTURA/vincular_archivos.php)
 
 
 
