@@ -8,6 +8,9 @@
 - [PHP\_Doc](#php_doc)
   - [¿Que es PHP?](#que-es-php)
   - [Instalación de PHP](#instalación-de-php)
+  - [Estructura documentos PHP](#estructura-documentos-php)
+    - [Incrustaciones](#incrustaciones)
+    - [Archivos Únicos](#archivos-únicos)
     - [Contenido del Repositorio](#contenido-del-repositorio)
   - [Estructura del Repositorio (por carpetas)](#estructura-del-repositorio-por-carpetas)
     - [LOG ERRORES](#log-errores)
@@ -54,6 +57,7 @@ sudo apt-get install php-redis
 
 >[!NOTE]
 Pasos adicionales si usamos MongoDB
+
 ```bash
 # Para instalar el Soporte MongoDB
 # IMPORTANTE! Si no usamos MongoDB NO LO INSTALAES
@@ -91,6 +95,48 @@ sudo apt install curl php8.2-cli php8.2-mbstring git unzip
 # Damos permisos al directorio de publicación
 sudo chmod 777 -R /var/www/html 
 ```
+
+## Estructura documentos PHP
+
+### Incrustaciones
+
+Podemos hacer incrustaciones de php en cualquier parte del documento según necesitemos.
+
+```php
+<?php
+    echo "Podemos crear incrustaciones donde necesitemos usando <?php ?>";
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Incrustaciones</title>
+</head>
+<body>
+    <p>Hola Mundo!</p>
+    <?php
+    echo "De igual manera dentro del código, usando <?php ?>";
+    ?>
+</body>
+</html>
+```
+[-> Enlace a Ejemplo <-](ejemplos/0.%20ESTRUCTURA/incrustaciones.php)
+
+### Archivos Únicos
+
+Estos archivos únicamente contienen contenido php, se utilizan para crear archivos de funciones concretas que se vinculan al archivo principal.
+No es necesario usar la etiqueta de cierre **?>**
+
+```php
+<?php
+    echo "Documento único php";
+
+```
+[-> Enlace a Ejemplo <-](ejemplos/0.%20ESTRUCTURA/archivo_unico.php)
+
+
+
+
 
 ### Contenido del Repositorio
 
