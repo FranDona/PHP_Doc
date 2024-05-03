@@ -12,18 +12,32 @@
     - [Incrustaciones](#incrustaciones)
     - [Archivos Únicos](#archivos-únicos)
     - [Vincular archivos PHP](#vincular-archivos-php)
+  - [Log de Errores](#log-de-errores)
+  - [CRUD](#crud)
+    - [Create](#create)
+    - [Read](#read)
+    - [Update](#update)
+    - [Delete](#delete)
+    - [Delete Lógico](#delete-lógico)
+  - [Funciones PHP](#funciones-php)
+    - [Conexión BBDD](#conexión-bbdd)
+    - [Registro de Usuarios](#registro-de-usuarios)
+    - [Login](#login)
+    - [Sesiones](#sesiones)
+    - [Fotos de Perfil](#fotos-de-perfil)
+    - [Buscador en Streaming](#buscador-en-streaming)
     - [Contenido del Repositorio](#contenido-del-repositorio)
   - [Estructura del Repositorio (por carpetas)](#estructura-del-repositorio-por-carpetas)
     - [LOG ERRORES](#log-errores)
-    - [LOGIN](#login)
+    - [LOGIN](#login-1)
       - [CREDENCIALES UNICAS](#credenciales-unicas)
       - [GRUPO DE CREDENCIALES](#grupo-de-credenciales)
     - [CONEXION BBDD](#conexion-bbdd)
-    - [CRUD](#crud)
-      - [CREATE](#create)
-      - [DELETE](#delete)
-      - [READ](#read)
-      - [UPDATE](#update)
+    - [CRUD](#crud-1)
+      - [CREATE](#create-1)
+      - [DELETE](#delete-1)
+      - [READ](#read-1)
+      - [UPDATE](#update-1)
 
 ## ¿Que es PHP?
 PHP es un lenguaje de programación web utilizado para crear sitios dinámicos y aplicaciones. Se ejecuta en el servidor y permite integrar código PHP con HTML para generar contenido personalizado. Su popularidad se debe a su facilidad de uso y a su gran comunidad de desarrolladores.
@@ -171,6 +185,38 @@ require_once ('archivo.php');
 </html>
 ```
 [-> Enlace a Ejemplo <-](ejemplos/0.%20ESTRUCTURA/vincular_archivos.php)
+
+## Log de Errores
+
+----
+
+## CRUD
+
+### Create
+
+### Read
+
+### Update
+
+### Delete
+
+### Delete Lógico
+
+----
+
+## Funciones PHP
+
+### Conexión BBDD
+
+### Registro de Usuarios
+
+### Login
+
+### Sesiones
+
+### Fotos de Perfil
+
+### Buscador en Streaming
 
 
 
