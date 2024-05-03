@@ -214,8 +214,41 @@ ini_set('log_errors', 1); // Habilita el registro de errores en el archivo espec
 
 ## CRUD
 
-### Create
+Un CRUD es un acrónimo que significa "Create, Read, Update, Delete" (Crear, Leer, Actualizar, Borrar). Se refiere a las cuatro operaciones básicas que pueden ser realizadas sobre datos en un sistema de gestión de bases de datos o aplicaciones: crear nuevos registros, leer o consultar información existente, actualizar registros existentes y eliminar registros.
 
+### Create
+El create lo usaremos para añadir nuevos registros a una tabla
+* Dentro del **$_REQUEST['']** colocaremos el nombre del input que usaremos en el formulario
+* 
+```php
+if (isset($_REQUEST['añadir'])) {
+    $dato1 = $_REQUEST['dato1'];
+    $dato2 = $_REQUEST['dato2'];
+    $dato3 =  $_REQUEST['dato3'];
+
+    // Sentencia preparada
+    $sql = "INSERT INTO NOMBRE_TABLA 
+            (dato1, dato2, dato3)
+            VALUES (?, ?, ?)"; // Usamos 0 o 1 si es booleano
+
+    $stmt = $conexion->prepare($sql);
+
+    $stmt->bind_param("sss", $dato1, $dato2, $dato3);
+                    // Vinculo los parámetros
+                    // - s -> char, varchar
+                    // - i -> int, boolean
+                    // - d -> decimal, flotante
+
+    //Comprobacion de la consulta
+    if ($stmt->execute()) {
+        $registro = "Registro insertado correctamente";
+    } else {
+        $registro = "ERROR al añadir al cliente";
+    }
+    $stmt->close();
+}
+```
+[-> Ejemplo Completo <-](ejemplos/2.%20CRUD/CREATE/create.php)
 ### Read
 
 ### Update
