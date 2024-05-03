@@ -188,6 +188,28 @@ require_once ('archivo.php');
 
 ## Log de Errores
 
+Conocer los errores de nuestro código es muy importante en producción, por lo que vamos a crear un archivo que muestre todos nuestros errores.
+
+1. Creamos archivo de errores
+```php
+<?php
+ini_set('display_errors', 1); // Muestra los errores en la pantalla
+ini_set('display_startup_errors', 1); // Muestra los errores de inicio
+error_reporting(E_ALL); // Reporta todos los errores de PHP
+
+ini_set('error_log', 'errores.log'); // Establece el archivo en el que se van a registrar los errores.
+ini_set('log_errors', 1); // Habilita el registro de errores en el archivo especificado arriba
+```
+[-> Enlace a Ejemplo <-](ejemplos/1.%20LOG%20ERRORES/errores.php)
+
+2. Vinculamos el archivo al documento que queramos revisar
+
+```php
+<?php 
+  include "errores.php";
+?>
+```
+
 ----
 
 ## CRUD
