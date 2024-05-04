@@ -16,6 +16,7 @@
   - [CRUD](#crud)
     - [Create](#create)
     - [Read](#read)
+      - [Consulta con JOIN](#consulta-con-join)
     - [Update](#update)
     - [Delete](#delete)
     - [Delete Lógico](#delete-lógico)
@@ -248,9 +249,93 @@ if (isset($_REQUEST['añadir'])) {
     $stmt->close();
 }
 ```
-[-> Ejemplo Completo <-](ejemplos/2.%20CRUD/CREATE/create.php)
+[-> Ejemplo Completo <-](ejemplos/2.%20CRUD/0.%20CREATE/create.php)
 ### Read
+```php
+// Definición de la consulta SQL para seleccionar todos los datos de una tabla llamada NOMBRE_TABLA
+$sql = "SELECT * FROM NOMBRE_TABLA";
 
+// Preparación de la consulta SQL utilizando el método prepare() de la conexión a la base de datos
+$sentPreparada = $conexion->prepare($sql);
+
+// Verificar si la preparación de la sentencia fue exitosa
+if ($sentPreparada === false) {
+    // Si la preparación falla, se muestra un mensaje de error con detalles obtenidos de la conexión
+    die("Error en la preparación de la consulta: " . $conexion->error);
+}
+
+// Ejecución de la consulta preparada
+$sentPreparada->execute();
+
+// Verificar si la ejecución de la sentencia fue exitosa
+if ($sentPreparada === false) {
+    // Si la ejecución falla, se muestra un mensaje de error con detalles obtenidos de la consulta preparada
+    die("Error en la ejecución de la consulta: " . $sentPreparada->error);
+}
+
+// Obtención de los resultados de la consulta en forma de tabla
+$tabla = $sentPreparada->get_result();
+
+// Obtención de todos los registros de la tabla en forma de arreglo asociativo
+$registros = $tabla->fetch_all(MYSQLI_ASSOC);
+```
+
+[-> Ejemplo Completo <-](ejemplos/2.%20CRUD/1.%20READ/read.php)
+
+
+Una vez esta creada la lógica de la consulta la mostramos en la parte del html de la siguiente manera
+
+```php
+<!DOCTYPE html>
+<html lang="es">
+            <!-- Zona de visualizacion de datos -->
+    <table class="table text-center table-striped table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th> DATO 1 </th>
+                <th> DATO 2 </th>
+                <th> DATO BOOLEANO </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Se realiza una consulta a la base de datos utilizando la variable $conexion y $sql
+            $tabla = $conexion->query($sql);
+            
+            // Se obtienen todos los registros de la tabla en forma de arreglo asociativo
+            $registros = $tabla->fetch_all(MYSQLI_ASSOC);
+            
+            // Se recorre cada registro y se imprime en filas de la tabla HTML
+            foreach ($registros as $registro) {
+                echo "<tr>";
+                echo "<td>" . $registro['dato1'] . "</td>";
+                echo "<td>" . $registro['dato2'] . "</td>";
+                echo "<td>";
+                // Se utiliza un operador ternario para imprimir "Verdadero" si dato_booleano es 1, de lo contrario "Falso"
+                echo $registro['dato_booleano'] == 1 ? "Verdadero" : "Falso";
+                echo "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</html>
+```
+[-> Ejemplo Completo <-](ejemplos/2.%20CRUD/1.%20READ/read.php)
+
+>[!NOTE]
+> Los datos no solo se pueden mostrar en una tabla, se pueden representar de la manera que se quiera siempre y cuando cumpla el **foreach** para que se muestren todos los datos
+
+#### Consulta con JOIN
+
+Si queremos mostrar datos de dos tablas diferentes en el mismo lugar sera necesario hacer un **Consulta JOIN** en la cual se recogen los datos que queremos de cada tabla:
+
+```sql
+SELECT Tabla1.dato1, Tabla1.dato2, Tabla1.dato3, Tabla2.dato4 FROM Tabla1 
+JOIN Tabla2  ON Tabla1.id = Tabla2.id_relacionado;
+```
+
+Esta consulta mostraría los datos 1,2,3 de la Tabla1 y el dato4 de la Tabla numero 2
 ### Update
 
 ### Delete
