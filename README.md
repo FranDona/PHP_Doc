@@ -336,7 +336,44 @@ JOIN Tabla2  ON Tabla1.id = Tabla2.id_relacionado;
 ```
 
 Esta consulta mostraría los datos 1,2,3 de la Tabla1 y el dato4 de la Tabla numero 2
+
+
 ### Update
+
+
+- Cosas a tener en cuenta:
+
+  -  **$dato1 = $_POST['dato1'];** Usamos nombre exacto de la bbdd
+
+  -  Usamos metodo **POST** para evitar inyecciones
+
+  -  La **Sentencia Preparada** tendra que tener el mismo orden que la **Consulta**
+
+
+
+```php
+if (isset($_POST['actualizar'])) {
+    $datoUnico = $_POST['datoUnico'];
+    $dato1 = $_POST['dato1'];
+    $dato2 = $_POST['dato2'];
+    $dato3 = $_POST['dato3'];
+
+    $sqlUpdate = "UPDATE NOMBRE_TABLA 
+                  SET dato1=?, 
+                      dato2=?,
+                      dato3=?
+                  WHERE datoUnico=?";
+
+    $sentenciaSQL = $conexion->prepare($sqlUpdate);
+    $sentenciaSQL->bind_param("ssss", $dato1, $dato2, $dato3, $datoUnico);
+
+    if ($sentenciaSQL->execute()) {
+        $resultado .= "<br> Registro actualizado correctamente";
+    } else {
+        $resultado .= "<br> ERROR en la actualización";
+    }
+}
+```
 
 ### Delete
 
