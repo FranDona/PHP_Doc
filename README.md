@@ -386,7 +386,7 @@ Comenzaremos creando un botón para eliminar el dato que queramos sacado de un t
 <form action="#" method="get">
     <input type="hidden" name="idDato" value="<?php echo $registro['PK_BBDD'] ?>">
     // Dentro del imput sacamos la PK
-    <input type="submit" value="Borrado Fisico" name="fisico">
+    <input type="submit" value="Borrado Fisico" name="borradoFisico">
 </form>
 ```
 
@@ -395,13 +395,13 @@ Procedemos a crear la lógica del borrado físico
 ```php
 <?php
 // Verifica si se ha enviado el formulario de eliminación
-if (isset($_POST['eliminar'])) {
+if (isset($_POST['borradoFisico'])) {
     // Obtiene el ID del registro a eliminar desde el formulario
     // name que usamos del formulario
     $idDato = $_POST['idDato'];
 
     // Sentencia SQL para eliminar un registro de la tabla
-    $sqlDelete = "DELETE FROM NOMBRE_TABLA WHERE idDato = ?";
+    $sqlDelete = "DELETE FROM NOMBRE_TABLA WHERE PK_BBDD = ?";
 
     // Prepara la sentencia SQL para ejecución
     $sentenciaSQL = $conexion->prepare($sqlDelete);
@@ -438,7 +438,52 @@ if (isset($_POST['eliminar'])) {
 
 ### Delete Lógico
 
+En el caso del Delete Lógico vamos a usar la misma practica del voton, para sacar la PK:
 
+Comenzaremos creando un botón para eliminar el dato que queramos sacado de un tabla con un foreach o de otra forma.
+```php
+<form action="#" method="get">
+    <input type="hidden" name="idDato" value="<?php echo $registro['PK_BBDD'] ?>">
+    <input type="submit" value="Borrado Lógico" name="borradoLogico">
+</form>
+```
+Procedemos a crear la lógica del borrado lógico
+```php
+// Comprobamos si se ha enviado el formulario para el borrado lógico
+if (isset($_GET['borradoLogico'])) {
+    // Definimos la consulta SQL para el borrado lógico.
+    // En este caso, actualizamos el campo 'borrado' a 1 para marcar como borrado
+    $sql = "UPDATE NOMBRE_TABLA SET borrado = 1 WHERE PK_BBDD = ?";
+    
+    // Preparamos la consulta SQL para su ejecución
+    $sentPreparada = $conexion->prepare($sql);
+    
+    // Vinculamos el parámetro de la clave primaria del registro a la consulta SQL preparada
+    $sentPreparada->bind_param("s", $_GET['idDato']); // Aquí asumimos que 'matricula' es el nombre del campo clave
+    
+    // Ejecutamos la consulta SQL preparada
+    if ($sentPreparada->execute()) {
+        // Si la ejecución es exitosa, asignamos un mensaje de éxito
+        $resultado = "Borrado Lógico correcto";
+    } else {
+        // Si ocurre un error durante la ejecución, asignamos un mensaje de error
+        $resultado = "ERROR en el BORRADO";
+    }
+}
+```
+[-> Ejemplo Completo <-](ejemplos/2.%20CRUD/3.%20DELETE/delete_fisico_logico.php)
+
+
+**Conclusion:** 
+1. Al pulsar el botón de boorado lógico (que contiene la clave principal del registro), se envía un formulario con esa información al servidor.
+   
+2. El servidor recibe la información del formulario y la almacena en una variable.
+
+3. Se construye la consulta SQL para realizar la actualizacion del registro utilizando la clave principal recibida.
+   
+4. La clave principal se vincula a la consulta SQL para evitar posibles ataques de inyección de SQL.
+   
+5. Se ejecuta la consulta SQL para llevar a cabo la actualizacion del registro correspondiente en la base de datos. 
 
 ----
 
