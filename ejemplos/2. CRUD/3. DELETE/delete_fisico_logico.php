@@ -1,10 +1,6 @@
 <?php
 require("funciones_delete.php");
 
-// Conexión con la BBDD-------
-$conexion = conectarBBDD();
-//-----------------------------
-
 // (Borrado FISICO)
 if (isset($_REQUEST['fisico'])) {
     $resultado = borraradoFisico("nombre_tabla", $conexion, "clave_principal", $_REQUEST['clave_principal'], "s");

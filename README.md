@@ -378,10 +378,67 @@ if (isset($_POST['actualizar'])) {
 [-> Ejemplo Completo <-](ejemplos/2.%20CRUD/2.%20UPDATE/update.php)
 
 
-
 ### Delete
 
+Comenzaremos creando un botón para eliminar el dato que queramos sacado de un tabla con un foreach o de otra forma.
+
+```php
+<form action="#" method="get">
+    <input type="hidden" name="idDato" value="<?php echo $registro['PK_BBDD'] ?>">
+    // Dentro del imput sacamos la PK
+    <input type="submit" value="Borrado Fisico" name="fisico">
+</form>
+```
+
+
+Procedemos a crear la lógica del borrado físico
+```php
+<?php
+// Verifica si se ha enviado el formulario de eliminación
+if (isset($_POST['eliminar'])) {
+    // Obtiene el ID del registro a eliminar desde el formulario
+    // name que usamos del formulario
+    $idDato = $_POST['idDato'];
+
+    // Sentencia SQL para eliminar un registro de la tabla
+    $sqlDelete = "DELETE FROM NOMBRE_TABLA WHERE idDato = ?";
+
+    // Prepara la sentencia SQL para ejecución
+    $sentenciaSQL = $conexion->prepare($sqlDelete);
+    
+    // Vincula el parámetro de ID del registro a eliminar a la sentencia SQL
+    $sentenciaSQL->bind_param("i", $idDato);
+
+    // Ejecuta la sentencia SQL preparada
+    if ($sentenciaSQL->execute()) {
+        // Si la ejecución es exitosa, muestra un mensaje de éxito
+        $resultado .= "<br> Registro eliminado correctamente";
+    } else {
+        // Si ocurre un error durante la ejecución, muestra un mensaje de error
+        $resultado .= "<br> ERROR en la eliminación";
+    }
+}
+?>
+```
+[-> Ejemplo Completo <-](ejemplos/2.%20CRUD/3.%20DELETE/delete_fisico_logico.php)
+
+<br>
+
+**Conclusion:** 
+1. Al pulsar el botón de eliminar (que contiene la clave principal del registro), se envía un formulario con esa información al servidor.
+   
+2. El servidor recibe la información del formulario y la almacena en una variable.
+
+3. Se construye la consulta SQL para realizar el borrado físico del registro utilizando la clave principal recibida.
+   
+4. La clave principal se vincula a la consulta SQL para evitar posibles ataques de inyección de SQL.
+   
+5. Se ejecuta la consulta SQL para llevar a cabo el borrado físico del registro correspondiente en la base de datos. 
+
+
 ### Delete Lógico
+
+
 
 ----
 
