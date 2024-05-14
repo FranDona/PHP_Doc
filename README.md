@@ -349,6 +349,7 @@ Esta consulta mostraría los datos 1,2,3 de la Tabla1 y el dato4 de la Tabla num
 
   -  La **Sentencia Preparada** tendra que tener el mismo orden que la **Consulta**
 
+  - En el formulario de actualizacion el **Dato Unico** por lo general suele ser el id o PK del campo de la bbdd por lo que se suele indicar como **disabled="disabled"** para evitar problemas
 
 
 ```php
@@ -374,6 +375,9 @@ if (isset($_POST['actualizar'])) {
     }
 }
 ```
+[-> Ejemplo Completo <-](ejemplos/2.%20CRUD/2.%20UPDATE/update.php)
+
+
 
 ### Delete
 
