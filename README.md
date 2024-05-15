@@ -22,6 +22,8 @@
     - [Delete Lógico](#delete-lógico)
   - [Funciones PHP](#funciones-php)
     - [Conexión BBDD](#conexión-bbdd)
+      - [MYSQLI](#mysqli)
+      - [PDO](#pdo)
     - [Registro de Usuarios](#registro-de-usuarios)
     - [Login](#login)
     - [Sesiones](#sesiones)
@@ -475,7 +477,7 @@ if (isset($_GET['borradoLogico'])) {
 
 
 **Conclusion:** 
-1. Al pulsar el botón de boorado lógico (que contiene la clave principal del registro), se envía un formulario con esa información al servidor.
+1. Al pulsar el botón de borrado lógico (que contiene la clave principal del registro), se envía un formulario con esa información al servidor.
    
 2. El servidor recibe la información del formulario y la almacena en una variable.
 
@@ -490,6 +492,63 @@ if (isset($_GET['borradoLogico'])) {
 ## Funciones PHP
 
 ### Conexión BBDD
+
+**Diferencias entre MYSQLI y PDO**
+
+| Característica                           | MySQLi                                        | PDO                                           |
+|------------------------------------------|-----------------------------------------------|-----------------------------------------------|
+| API                                      | Orientada a objetos y procedural             | Orientada a objetos                           |
+| Soporte de Bases de Datos                | Específico para MySQL                        | Compatible con múltiples bases de datos      |
+| Seguridad y Preparación de Consultas    | Soporte para consultas preparadas y parametrizadas | Soporte para consultas preparadas y parametrizadas |
+| Estilo de Código y Flexibilidad         | Específico para MySQL, código más específico | Capa de abstracción más genérica, código más general |
+
+
+#### MYSQLI
+```php
+function conectarBBDD() 
+{
+    // Parametros de conexion
+    $servidor = "localhost";
+    $usuario = "root";
+    $clave = "root";
+    $bbdd = "nombreBBDD";
+
+    // Objeto de conexión
+    $conexion = new mysqli($servidor, $usuario, $clave, $bbdd);
+
+    // Comprobamos la conexión
+    if ($conexion->connect_error) {
+        die("Error de Conexión: " . $conexion->connect_error);
+    }
+
+    return $conexion;
+}
+```
+[-> Ejemplo Completo <-](ejemplos/3.%20FUNCIONES%20PHP/0.%20CONEXION%20BBDD/MYSQLI/FUNCION_conexionbbdd.php)
+
+----
+
+#### PDO
+```php
+function conectarBBDD_PDO()
+{
+    $servidor = "localhost";
+    $usuario = "root";
+    $clave = "root";
+    $bbdd = "nombreBBDD";
+
+    try {
+        // Objeto conexión PDO
+        $conn = new PDO("mysql:host=$servidor;dbname=$bbdd", $usuario, $clave);
+        // Configura PDO para que lance excepciones en caso de errores
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
+    } catch(PDOException $e) {
+        // Captura cualquier excepción que ocurra durante la conexión
+        die("Error de Conexión: " . $e->getMessage());
+    }
+}
+```
 
 ### Registro de Usuarios
 
